@@ -28,7 +28,7 @@ export async function populateDatabase(){
 }
 
 export async function getPokemons(){
-    const pokemons = await getRepository(Pokemon).find();
+    const pokemons = await getRepository(Pokemon).find({order:{id:"ASC"}});
     return pokemons;
 }
 
