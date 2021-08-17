@@ -31,3 +31,19 @@ export async function getPokemons(){
     const pokemons = await getRepository(Pokemon).find();
     return pokemons;
 }
+
+export async function addMyPokemon(id: number){
+    const pokemon = await getRepository(Pokemon).findOne({id});
+    if(!pokemon) return false;
+
+    await getRepository(Pokemon).update({id},{inMyPokemons: true});
+    return true;
+}
+
+export async function removeMyPokemon(id: number){
+    const pokemon = await getRepository(Pokemon).findOne({id});
+    if(!pokemon) return false;
+
+    await getRepository(Pokemon).update({id},{inMyPokemons: false});
+    return true;
+}

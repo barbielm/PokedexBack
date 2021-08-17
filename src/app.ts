@@ -21,6 +21,9 @@ app.post("/sign-in", userController.signIn);
 
 app.get("/pokemons", tokenMiddleware.verifyToken ,pokemonController.getPokemons);
 
+app.post("/my-pokemons/:id/add", tokenMiddleware.verifyToken, pokemonController.addMyPokemon);
+app.post("/my-pokemons/:id/remove", tokenMiddleware.verifyToken, pokemonController.removeMyPokemon);
+
 export async function init () {
   await connectDatabase();
 }
